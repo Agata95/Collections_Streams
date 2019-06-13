@@ -1,10 +1,8 @@
-package com.javagda25.zadania;
+package com.javagda25.zadanie1;
 
 
 import java.util.*;
-import java.util.function.Predicate;
 import java.util.stream.Collectors;
-import java.util.stream.IntStream;
 
 public class MainZadanie {
     public static void main(String[] args) {

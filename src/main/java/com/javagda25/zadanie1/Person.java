@@ -1,4 +1,4 @@
-package com.javagda25.zadania;
+package com.javagda25.zadanie1;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
