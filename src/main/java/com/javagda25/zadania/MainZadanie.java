@@ -94,11 +94,53 @@ public class MainZadanie {
 
         OptionalDouble ageStream = list.stream()
                 .mapToInt(people -> people.getAge()).average();
-        if(ageStream.isPresent()){
+        if (ageStream.isPresent()) {
             System.out.println("Średnia wieku: " + ageStream.getAsDouble());
         }
 
-        // lista unikalnych imion
+        System.out.println("*******");
+
+        // uzyskaj listę wszystkich nazwisk osób, które są w przedziale wiekowym: 15-19 (filter)
+        List<Person> listaLudzi = list.stream()
+                .filter(p -> p.getAge() >= 15 && p.getAge() <= 19)
+                .collect(Collectors.toList());
+
+        List<String> listaNazwisk = listaLudzi.stream()
+                .map(p -> p.getLastName())
+                .collect(Collectors.toList());
+        listaNazwisk.forEach(p -> System.out.println(p));
+
+        System.out.println("*******");
+
+        // uzyskaj sumę wieku wszystkich osób (sum)
+        Integer ageAll = list.stream()
+                .mapToInt(p -> p.getAge()).sum();
+        System.out.println(ageAll);
+
+        System.out.println("*******");
+
+        // uzyskaj średnią wieku wszystkich mężczyzn (average)
+        List<Person> listOfMan2 = list.stream()
+                .filter(element -> element.isMale())
+                .collect(Collectors.toList());
+
+        OptionalDouble avarageAgeOfMan = listOfMan2.stream()
+                .mapToInt(p -> p.getAge()).average();
+        System.out.println(avarageAgeOfMan);
+
+        System.out.println("*******");
+
+        // znajdź nastarszą osobę w liście (findFirst)
+        Integer maxAge = list.stream()
+                .mapToInt(p -> p.getAge()).max()
+                .getAsInt();
+
+        Optional<Person> najstarszaOsoba = list.stream()
+                .filter(p -> p.getAge() == maxAge)
+                .findFirst();
+        System.out.println(najstarszaOsoba);
+
+
     }
 
 
