@@ -121,18 +121,39 @@ public class MainZadanie2 {
         System.out.println("********************");
 
         // uzyskaj ilość wszystkich języków opanowanych przez programistki
-        List<Programmer> setWoman = programmers.stream()
+        long setLanguagesWoman = programmers.stream()
                 .filter(p -> !p.getPerson().isMale())
+                .map(p -> p.getLanguages())
+                .flatMap(langu -> langu.stream())
+                .distinct() // przez stream przechodza unikalne obiekty
+                .count();
+
+        System.out.println(setLanguagesWoman);
+
+        System.out.println("********************");
+
+        // wypisz informację czy jest programista w Javie który ma na nazwisko Brawo (matchAny)
+        Boolean programmerBrawo = programmers.stream()
+                .anyMatch(p -> p.getPerson().getLastName().equalsIgnoreCase("Brawo") && p.getLanguages().contains("Java"));
+        System.out.println(programmerBrawo);
+
+        System.out.println("********************");
+
+        // wypisz najrzadziej występujący język/języki (listę, bo mogą być "tak samo mało popularne")
+        List<String> listOfAllLanguages = programmers.stream()
+                .map(p->p.getLanguages())
+                .flatMap(l->l.stream())
                 .collect(Collectors.toList());
 
-        Set<String> setLanguagesWoman = setWoman.stream()
-                .map(p -> p.getLanguages())
-                .flatMap(Collection::stream)
-                .collect(Collectors.toSet());
+        OptionalLong min = programmers.stream()
+                .map(p->p.getLanguages())
+                .flatMap(l->l.stream())
+                .mapToLong(j -> listOfAllLanguages.stream().filter(lang->lang.equalsIgnoreCase(j)).count())
+                .min();
 
-        int sizeLanguageWoman = setLanguagesWoman.size();
-
-        System.out.println(sizeLanguageWoman);
+        if(min.isPresent()){
+            Optional<>
+        }
 
     }
 }
