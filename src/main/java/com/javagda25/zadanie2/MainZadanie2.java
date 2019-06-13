@@ -129,7 +129,10 @@ public class MainZadanie2 {
                 .map(p -> p.getLanguages())
                 .flatMap(Collection::stream)
                 .collect(Collectors.toSet());
-        System.out.println(setLanguagesWoman);
+
+        int sizeLanguageWoman = setLanguagesWoman.size();
+
+        System.out.println(sizeLanguageWoman);
 
     }
 }
