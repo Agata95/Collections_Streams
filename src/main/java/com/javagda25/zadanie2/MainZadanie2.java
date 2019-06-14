@@ -151,9 +151,9 @@ public class MainZadanie2 {
                 .mapToLong(j -> listOfAllLanguages.stream().filter(lang->lang.equalsIgnoreCase(j)).count())
                 .min();
 
-        if(min.isPresent()){
-            Optional<>
-        }
+//        if(min.isPresent()){
+//            Optional<>
+//        }
 
     }
 }
